@@ -1,9 +1,10 @@
 <script setup lang="ts">
-import Accordion from './components/Accordion.vue';
 import Modal from './components/Modal.vue';
+import TodoGroup from './components/TodoGroup.vue';
 
 import { reactive } from 'vue';
 import { useTodoStore } from './stores/todo';
+import type { TodoGroup as TodoGroupType } from '~/types/Todo';
 
 const todoStore = useTodoStore();
 
@@ -19,6 +20,11 @@ const state = reactive<State>({
   isAccordionOpen: false,
 });
 
+const onUpdateTodoGroup = (index: number, todoGroup: TodoGroupType) => {
+  console.log(index, todoGroup);
+  todoStore.updateTodoGroup(index, todoGroup);
+};
+
 const onSubmitCreateTodoGroup = (event: Event) => {
   event.preventDefault();
   console.log('submit', state.inputTodoGroupName);
@@ -32,15 +38,17 @@ const onSubmitCreateTodoGroup = (event: Event) => {
 .app
   div TODOリスト
   div
-    template(v-for="todoGroup in todoStore.todoGroups")
-      div {{ todoGroup.groupName }}
-  Accordion(v-model="state.isAccordionOpen")
-    template(v-slot:head)
-      .header
-        div head
-        button delete
-    div コンテンツ
-  button(@click="state.isModalOpen = true") TODOグループ作成
+    template(v-for="(todoGroup, index) in todoStore.todoGroups")
+      TodoGroup(
+        :groupName="todoGroup.groupName"
+        :isOpen="todoGroup.isOpen"
+        :todos="todoGroup.todos"
+        @update:todoGroup="onUpdateTodoGroup(index, $event)"
+      )
+  button(
+    style="margin-top: 8px;"
+    @click="state.isModalOpen = true"
+  ) TODOグループ作成
   Modal(v-model="state.isModalOpen")
     form.modal-content(@submit="onSubmitCreateTodoGroup")
       input(v-model="state.inputTodoGroupName", placeholder="TODOグループ名")
@@ -51,11 +59,6 @@ const onSubmitCreateTodoGroup = (event: Event) => {
 .app {
   margin: 0 auto;
   max-width: 1000px;
-}
-
-.header {
-  display: flex;
-  justify-content: space-between;
 }
 
 .modal-content {

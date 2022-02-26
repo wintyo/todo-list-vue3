@@ -27,5 +27,8 @@ export const useTodoStore = defineStore('todo', {
         todos: [],
       });
     },
+    updateTodoGroup(index: number, todoGroup: TodoGroup) {
+      this.todoGroups[index] = todoGroup;
+    },
   },
 });
