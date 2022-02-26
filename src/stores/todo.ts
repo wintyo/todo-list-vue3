@@ -30,5 +30,8 @@ export const useTodoStore = defineStore('todo', {
     updateTodoGroup(index: number, todoGroup: TodoGroup) {
       this.todoGroups[index] = todoGroup;
     },
+    removeTodoGroup(index: number) {
+      this.todoGroups.splice(index, 1);
+    },
   },
 });

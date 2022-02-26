@@ -21,8 +21,11 @@ const state = reactive<State>({
 });
 
 const onUpdateTodoGroup = (index: number, todoGroup: TodoGroupType) => {
-  console.log(index, todoGroup);
   todoStore.updateTodoGroup(index, todoGroup);
+};
+
+const onRemoveTodoGroup = (index: number) => {
+  todoStore.removeTodoGroup(index);
 };
 
 const onSubmitCreateTodoGroup = (event: Event) => {
@@ -44,6 +47,7 @@ const onSubmitCreateTodoGroup = (event: Event) => {
         :isOpen="todoGroup.isOpen"
         :todos="todoGroup.todos"
         @update:todoGroup="onUpdateTodoGroup(index, $event)"
+        @remove="onRemoveTodoGroup(index)"
       )
   button(
     style="margin-top: 8px;"
