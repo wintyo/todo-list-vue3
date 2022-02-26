@@ -6,13 +6,22 @@ import { reactive } from 'vue';
 
 type State = {
   isModalOpen: boolean;
+  inputTodoGroupName: string;
   isAccordionOpen: boolean;
 };
 
 const state = reactive<State>({
   isModalOpen: false,
+  inputTodoGroupName: '',
   isAccordionOpen: false,
 });
+
+const onSubmitCreateTodoGroup = (event: Event) => {
+  event.preventDefault();
+  console.log('submit', state.inputTodoGroupName);
+  state.inputTodoGroupName = '';
+  state.isModalOpen = false;
+};
 </script>
 
 <template lang="pug">
@@ -24,9 +33,11 @@ const state = reactive<State>({
         div head
         button delete
     div コンテンツ
-  button(@click="state.isModalOpen = true") modal open
+  button(@click="state.isModalOpen = true") TODOグループ作成
   Modal(v-model="state.isModalOpen")
-    div hogehoge
+    form.modal-content(@submit="onSubmitCreateTodoGroup")
+      input(v-model="state.inputTodoGroupName", placeholder="TODOグループ名")
+      button(style="margin-left: 8px;" type="submit") 作成
 </template>
 
 <style lang="scss" scoped>
@@ -38,5 +49,9 @@ const state = reactive<State>({
 .header {
   display: flex;
   justify-content: space-between;
+}
+
+.modal-content {
+  padding: 20px;
 }
 </style>
