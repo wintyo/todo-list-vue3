@@ -35,8 +35,8 @@ export default defineConfig({
         background_color: '#fff',
         theme_color: '#3cb371',
         display: 'standalone',
-        scope: '/todo-list-vue3/',
-        start_url: '/todo-list-vue3/',
+        scope: './',
+        start_url: './',
         icons: [
           {
             src: 'app-icons/48x48.png',
