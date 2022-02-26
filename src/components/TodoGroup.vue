@@ -47,9 +47,11 @@ const onDeleteButtonClick = () => {
   if (dialog == null) {
     return;
   }
+  // @ts-ignore vue-tscでは解釈してくれなかったのでignore
   dialog.open({
     okAction: () => {
       emit('remove');
+      // @ts-ignore vue-tscでは解釈してくれなかったのでignore
       dialog.close();
     },
   });
