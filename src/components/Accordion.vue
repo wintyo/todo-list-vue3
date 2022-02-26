@@ -17,11 +17,11 @@ const onToggle = (event: Event) => {
 </script>
 
 <template lang="pug">
-details.details(:open="props.modelValue", @toggle="onToggle")
+details.details(:open='props.modelValue', @toggle='onToggle')
   summary.header
     .header__icon
     .header__content
-      slot(name="head")
+      slot(name='head')
   .content
     slot
 </template>

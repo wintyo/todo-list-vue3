@@ -46,7 +46,7 @@ const onClose = () => {
 </script>
 
 <template lang="pug">
-dialog.dialog(:ref="setRef('elDialog')", @click="onClose")
+dialog.dialog(:ref='setRef("elDialog")', @click='onClose')
   div(@click.stop)
     slot
 </template>

@@ -41,22 +41,19 @@ const onSubmitCreateTodoGroup = (event: Event) => {
 .app
   div TODOリスト
   div
-    template(v-for="(todoGroup, index) in todoStore.todoGroups")
+    template(v-for='(todoGroup, index) in todoStore.todoGroups')
       TodoGroup(
-        :groupName="todoGroup.groupName"
-        :isOpen="todoGroup.isOpen"
-        :todos="todoGroup.todos"
-        @update:todoGroup="onUpdateTodoGroup(index, $event)"
-        @remove="onRemoveTodoGroup(index)"
+        :groupName='todoGroup.groupName',
+        :isOpen='todoGroup.isOpen',
+        :todos='todoGroup.todos',
+        @update:todoGroup='onUpdateTodoGroup(index, $event)',
+        @remove='onRemoveTodoGroup(index)'
       )
-  button(
-    style="margin-top: 8px;"
-    @click="state.isModalOpen = true"
-  ) TODOグループ作成
-  Modal(v-model="state.isModalOpen")
-    form.modal-content(@submit="onSubmitCreateTodoGroup")
-      input(v-model="state.inputTodoGroupName", placeholder="TODOグループ名")
-      button(style="margin-left: 8px;" type="submit") 作成
+  button(style='margin-top: 8px', @click='state.isModalOpen = true') TODOグループ作成
+  Modal(v-model='state.isModalOpen')
+    form.modal-content(@submit='onSubmitCreateTodoGroup')
+      input(v-model='state.inputTodoGroupName', placeholder='TODOグループ名')
+      button(style='margin-left: 8px', type='submit') 作成
 </template>
 
 <style lang="scss" scoped>

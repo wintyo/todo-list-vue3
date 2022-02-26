@@ -64,19 +64,13 @@ defineExpose({
 </script>
 
 <template lang="pug">
-Modal(
-  :modelValue="state.isOpen"
-  @update:modelValue="onChangeIsOpen"
-)
-  template(v-if="state.dialogOption")
+Modal(:modelValue='state.isOpen', @update:modelValue='onChangeIsOpen')
+  template(v-if='state.dialogOption')
     .dialog-content
       div {{ props.title }}
       .action-row
-        button(@click="ngButtonClick") NG
-        button(
-          style="margin-left: 4px;"
-          @click="okButtonClick"
-        ) OK
+        button(@click='ngButtonClick') NG
+        button(style='margin-left: 4px', @click='okButtonClick') OK
 </template>
 
 <style lang="scss" scoped>

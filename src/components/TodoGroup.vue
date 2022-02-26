@@ -48,19 +48,13 @@ const onDeleteButtonClick = () => {
 
 <template lang="pug">
 div
-  Accordion(
-    :modelValue="props.isOpen"
-    @update:modelValue="onChangeIsOpen"
-  )
+  Accordion(:modelValue='props.isOpen', @update:modelValue='onChangeIsOpen')
     template(v-slot:head)
       .header
         div {{ props.groupName }}
-        button(@click="onDeleteButtonClick") delete
+        button(@click='onDeleteButtonClick') delete
     div コンテンツ
-  Dialog(
-    :ref="setRef('dialog')"
-    title="削除してもいいですか？"
-  )
+  Dialog(:ref='setRef("dialog")', title='削除してもいいですか？')
 </template>
 
 <style lang="scss" scoped>
