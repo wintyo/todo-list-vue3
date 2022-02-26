@@ -33,7 +33,7 @@ export default defineConfig({
         name: 'TODO List',
         short_name: 'TODO',
         background_color: '#fff',
-        theme_color: '#3cb371',
+        theme_color: '#ff9a00',
         display: 'standalone',
         scope: '/todo-list-vue3/',
         start_url: '/todo-list-vue3/',
