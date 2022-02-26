@@ -1,6 +1,9 @@
+import { registerSW } from 'virtual:pwa-register';
 import { createApp, watch } from 'vue';
 import { createPinia } from 'pinia';
 import App from './App.vue';
+
+registerSW();
 
 const app = createApp(App);
 
