@@ -14,7 +14,6 @@ const emit = defineEmits<{
 watch(
   () => props.modelValue,
   (newValue) => {
-    console.log(newValue);
     const { elDialog } = refs;
     if (elDialog == null) {
       return;
@@ -70,11 +69,13 @@ dialog.dialog(:ref='setRef("elDialog")', @click='onClose')
   border: 0;
   border-radius: 4px;
   box-shadow: 0 0 10px #000;
+  visibility: hidden;
   opacity: 0;
   transition: all 0.5s ease;
 
   &[open] {
     opacity: 1;
+    visibility: visible;
     // animation: fade 0.5s ease 0s backwards;
   }
 

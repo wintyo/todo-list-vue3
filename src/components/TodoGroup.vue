@@ -35,7 +35,6 @@ const state = reactive<State>({
 });
 
 const onChangeIsOpen = (isOpen: boolean) => {
-  console.log(isOpen);
   emit('update:todoGroup', {
     groupName: props.groupName,
     isOpen,
