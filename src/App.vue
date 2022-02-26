@@ -3,6 +3,9 @@ import Accordion from './components/Accordion.vue';
 import Modal from './components/Modal.vue';
 
 import { reactive } from 'vue';
+import { useTodoStore } from './stores/todo';
+
+const todoStore = useTodoStore();
 
 type State = {
   isModalOpen: boolean;
@@ -19,6 +22,7 @@ const state = reactive<State>({
 const onSubmitCreateTodoGroup = (event: Event) => {
   event.preventDefault();
   console.log('submit', state.inputTodoGroupName);
+  todoStore.addTodoGroup(state.inputTodoGroupName);
   state.inputTodoGroupName = '';
   state.isModalOpen = false;
 };
@@ -27,6 +31,9 @@ const onSubmitCreateTodoGroup = (event: Event) => {
 <template lang="pug">
 .app
   div TODOリスト
+  div
+    template(v-for="todoGroup in todoStore.todoGroups")
+      div {{ todoGroup.groupName }}
   Accordion(v-model="state.isAccordionOpen")
     template(v-slot:head)
       .header
